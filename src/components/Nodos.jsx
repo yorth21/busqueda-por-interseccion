@@ -1,0 +1,21 @@
+import Nodo from "./Nodo"
+
+export default function Nodos({ grafo }) {
+  //const grafos = grafo; //.map((nodo) => nodo.nombre);
+
+  return (
+    <div className="col-span-3">
+      <h2 className="text-2xl py-2">Nodos</h2>
+      <div className="flex flex-row flex-wrap gap-2 px-2 py-2 rounded-xl border-2 border-neutral-300/70">
+        {grafo.length > 0 ? (
+          grafo.map((nodo) => (
+            <Nodo key={nodo.id} nodo={nodo} />
+          ))
+        ) : (
+          <div className="text-neutral-300/70">Lista Vacia</div>
+        )
+        }
+      </div>
+    </div>
+  )
+}
