@@ -15,6 +15,17 @@ export default function Form({ agregarNodo, agregarRelacion, grafo }) {
     const idNodoOrigen = e.target.idNodoOrigen.value;
     const idNodoDestino = e.target.idNodoDestino.value;
     const nombreRelacion = e.target.nombreRelacion.value;
+
+    if (idNodoOrigen === "0" || idNodoDestino === "0" || nombreRelacion.trim() === "") {
+      console.warn("Debes llenar todos los campos");
+      return;
+    }
+
+    if (idNodoOrigen === idNodoDestino) {
+      console.warn("No puedes relacionar un nodo consigo mismo");
+      return;
+    }
+
     agregarRelacion(idNodoOrigen, idNodoDestino, nombreRelacion);
     e.target.reset();
   }

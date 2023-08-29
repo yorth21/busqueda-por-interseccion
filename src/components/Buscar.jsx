@@ -1,9 +1,23 @@
 import Nodo from "./Nodo";
 
-export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handleBuscarInterseccion }) {
+export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handleBuscarInterseccion, eliminarNodo }) {
+  const newGrafo = grafo.filter(item => !nodosABuscar.includes(item));
+
   const handleSubmitAgregarNodoABuscar = (e) => {
     e.preventDefault();
     const idNodoABuscar = e.target.idNodoABuscar.value;
+
+    if (idNodoABuscar === "0") {
+      console.warn("Debes seleccionar un nodo");
+      return;
+    }
+
+    const nodo = nodosABuscar.find((nodo) => nodo.id === idNodoABuscar);
+    if (nodo) {
+      console.warn("El nodo ya esta en la lista");
+      return;
+    }
+
     agregarNodoABuscar(idNodoABuscar);
     e.target.reset();
   }
@@ -18,7 +32,7 @@ export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handle
             id="idNodoABuscar"
             className="bg-stone-950 px-3 py-2 font-semibold rounded-xl outline-none border-2 border-neutral-300/70 focus:border-neutral-300 w-full transition-colors">
             <option value="0">Selecciona un nodo</option>
-            {grafo.map((nodo) => (
+            {newGrafo.map((nodo) => (
               <option key={nodo.id} value={nodo.id} >{nodo.nombre}</option>
             ))}
           </select>
@@ -31,7 +45,7 @@ export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handle
       <div className="flex flex-row flex-wrap gap-2 px-2 py-2 rounded-xl border-2 border-neutral-300/70">
         {nodosABuscar.length > 0 ? (
           nodosABuscar.map((nodo) => (
-            <Nodo key={nodo.id} nodo={nodo} />
+            <Nodo key={nodo.id} nodo={nodo} eliminarNodo={eliminarNodo} />
           ))
         ) : (
           <div className="text-neutral-300/70">Lista Vacia</div>

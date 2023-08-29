@@ -40,6 +40,11 @@ export default function App() {
     setResultados(res);
   }
 
+  const handleEliminarNodoABuscar = (idNodo) => {
+    const newNodosABuscar = nodosABuscar.filter((nodo) => nodo.id !== idNodo);
+    setNodosABuscar(newNodosABuscar);
+  }
+
   return (
     <>
       <Header />
@@ -53,6 +58,7 @@ export default function App() {
             nodosABuscar={nodosABuscar}
             agregarNodoABuscar={agregarNodoABuscar}
             handleBuscarInterseccion={handleBuscarInterseccion}
+            eliminarNodo={handleEliminarNodoABuscar}
           />
           <Resultados resultados={resultados} />
         </div>
