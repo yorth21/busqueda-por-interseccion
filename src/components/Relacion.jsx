@@ -11,7 +11,9 @@ export default function Relacion({ nombreNodoOrigen, nombreNodoDestino, nombreRe
         <span className=""> {nombreRelacion} </span>
         <span className="font-bold">{nombreNodoDestino}</span>
       </div>
-      <IoMdCloseCircle className="text-neutral-900" />
+      <button>
+        <IoMdCloseCircle className="text-neutral-900" />
+      </button>
     </div>
   )
 }

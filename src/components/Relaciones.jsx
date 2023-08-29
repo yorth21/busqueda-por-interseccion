@@ -11,11 +11,11 @@ export default function Relaciones({ grafo }) {
           grafo.map((nodo) => (
             nodo.hijos.map((relacion) => (
               <Relacion
-                key={nodo.id}
+                key={relacion.idRelacion}
                 nombreNodoOrigen={nodo.nombre}
                 nombreNodoDestino={relacion.nodo.nombre}
                 nombreRelacion={relacion.relacion}
-                idRelacion={relacion.id}
+                idRelacion={relacion.idRelacion}
               />
             ))
           ))

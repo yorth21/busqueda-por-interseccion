@@ -2,6 +2,10 @@ export default function Form({ agregarNodo, agregarRelacion, grafo }) {
   const handleSubmitCrearNodo = (e) => {
     e.preventDefault();
     const nombreNodo = e.target.nombreNodo.value;
+    if (nombreNodo.trim() === "") {
+      console.warn("Agrega un nombre al nodo");
+      return;
+    }
     agregarNodo(nombreNodo);
     e.target.reset();
   }

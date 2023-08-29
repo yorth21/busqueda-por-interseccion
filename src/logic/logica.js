@@ -12,8 +12,8 @@ class Nodo {
     if (this.hijos.some((hijo) => hijo.nodo.id === nodoDestino.id)) {
       return;
     }
-    this.hijos.push({ nodo: nodoDestino, relacion: nombreRelacion });
-    nodoDestino.padres.push({ nodo: this, relacion: nombreRelacion, idRelacion: uuidv4()});
+    this.hijos.push({ nodo: nodoDestino, relacion: nombreRelacion, idRelacion: uuidv4() });
+    nodoDestino.padres.push({ nodo: this, relacion: nombreRelacion});
   }
 }
 
@@ -84,12 +84,16 @@ function buscarCoincidencias(camino, padresABuscar) {
   return encontrado;
 }
   
-function validarCaminos(caminosEncontrados, padresABuscar) {
+function validarCaminos(caminosEncontrados, padresABuscar, nodosABuscar) {
   const conjuntoDeInterseccion = [];
   for (const caminos of caminosEncontrados) {
     for (const camino of caminos) {
-      const res = buscarCoincidencias(camino, padresABuscar);
-      if (res) {
+      const res1 = buscarCoincidencias(camino, padresABuscar);
+      const res2 = !nodosABuscar.some(item => camino.includes(item));
+      const res3 = !conjuntoDeInterseccion.some(existingCamino =>
+        existingCamino.every(node => camino.includes(node))
+      );
+      if (res1 && res2 && res3) {
         conjuntoDeInterseccion.push(camino);
       }
     }
@@ -111,3 +115,12 @@ export function crearRelaciones(idNodoOrigen, idNodoDestino, nombreRelacion, gra
   return newGrafo;
 }
 
+export function buscarInterseccion(nodosABuscar) {
+  const padresABuscar = [];
+  for (const nodo of nodosABuscar) {
+    padresABuscar.push(buscarPadres(nodo));
+  }
+
+  const caminosEncontrados = buscarCaminos(padresABuscar);
+  return validarCaminos(caminosEncontrados, padresABuscar, nodosABuscar);
+}
