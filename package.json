@@ -31,5 +31,9 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
-  }
+  },
+  "description": "Programa para buscar los nodos de una red semantica",
+  "main": "postcss.config.js",
+  "author": "Yorth21",
+  "license": "ISC"
 }

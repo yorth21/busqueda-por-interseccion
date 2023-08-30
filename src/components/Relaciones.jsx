@@ -1,6 +1,6 @@
 import Relacion from "./Relacion";
 
-export default function Relaciones({ grafo }) {
+export default function Relaciones({ grafo, eliminarRelacion }) {
 
   const relaciones = [];
   if (grafo.length < 0) {
@@ -14,6 +14,7 @@ export default function Relaciones({ grafo }) {
         nombreNodoOrigen: nodo.nombre,
         nombreNodoDestino: relacion.nodo.nombre,
         nombreRelacion: relacion.relacion,
+        idNodoOrigen: nodo.id,
         idRelacion: relacion.idRelacion
       })
     ))
@@ -30,7 +31,9 @@ export default function Relaciones({ grafo }) {
               nombreNodoOrigen={item.nombreNodoOrigen}
               nombreNodoDestino={item.nombreNodoDestino}
               nombreRelacion={item.nombreRelacion}
+              idNodoOrigen={item.idNodoOrigen}
               idRelacion={item.idRelacion}
+              eliminarRelacion={eliminarRelacion}
             />
           ))
 

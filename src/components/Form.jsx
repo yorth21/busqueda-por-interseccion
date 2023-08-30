@@ -44,7 +44,7 @@ export default function Form({ agregarNodo, agregarRelacion, grafo }) {
             aria-label="Nombre del nodo"
             className="bg-stone-950 px-3 py-2 font-semibold rounded-xl outline-none border-2 border-neutral-300/70 focus:border-neutral-300 w-full transition-colors"
           />
-          <button className="px-10 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300 transition-colors">
+          <button className="bg-gray-800/80 hover:bg-gray-800/90 px-10 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300/80 transition-colors">
             Crear
           </button>
         </div>
@@ -85,7 +85,7 @@ export default function Form({ agregarNodo, agregarRelacion, grafo }) {
             </select>
           </div>
 
-          <button className="px-10 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300 transition-colors">
+          <button className="bg-gray-800/80 hover:bg-gray-800/90 px-10 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300/80 transition-colors">
             Crear
           </button>
         </div>

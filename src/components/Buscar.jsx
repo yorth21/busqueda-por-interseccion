@@ -36,7 +36,7 @@ export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handle
               <option key={nodo.id} value={nodo.id} >{nodo.nombre}</option>
             ))}
           </select>
-          <button className="px-8 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300 transition-colors">
+          <button className="bg-gray-800/80 hover:bg-gray-800/90 px-8 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300/80 transition-colors">
             Agregar
           </button>
         </div>
@@ -55,7 +55,7 @@ export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handle
 
       <button
         onClick={() => handleBuscarInterseccion()}
-        className="px-10 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300 transition-colors"
+        className="bg-gray-800/80 hover:bg-gray-800/90 px-10 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300/80 transition-colors"
       >
         Buscar
       </button>

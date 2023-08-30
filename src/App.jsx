@@ -36,13 +36,30 @@ export default function App() {
   }
 
   const handleBuscarInterseccion = () => {
+    if (nodosABuscar.length < 2) {
+      console.warn("Debes agregar al menos 2 nodos");
+      return;
+    }
+
     const res = buscarInterseccion(nodosABuscar);
+    //console.log(res);
     setResultados(res);
   }
 
   const handleEliminarNodoABuscar = (idNodo) => {
     const newNodosABuscar = nodosABuscar.filter((nodo) => nodo.id !== idNodo);
     setNodosABuscar(newNodosABuscar);
+  }
+
+  const eliminarRelacion = (idNodoOrigen, idRelacion) => {
+    const newGrafo = grafo.map((nodo) => {
+      if (nodo.id === idNodoOrigen) {
+        const newHijos = nodo.hijos.filter((relacion) => relacion.idRelacion !== idRelacion);
+        nodo.hijos = newHijos;
+      }
+      return nodo;
+    });
+    setGrafo(newGrafo);
   }
 
   return (
@@ -52,7 +69,7 @@ export default function App() {
         <div className="container mx-auto max-w-5xl p-4 grid grid-cols-5 gap-16">
           <Form agregarNodo={agregarNodo} agregarRelacion={agregarRelacion} grafo={grafo} />
           <Nodos grafo={grafo} eliminarNodo={eliminarNodo} />
-          <Relaciones grafo={grafo} />
+          <Relaciones grafo={grafo} eliminarRelacion={eliminarRelacion} />
           <Buscar
             grafo={grafo}
             nodosABuscar={nodosABuscar}

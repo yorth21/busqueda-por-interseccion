@@ -134,14 +134,19 @@ export function imprimirCaminos(resultados) {
   const caminos = [];
   resultados.forEach((camino) => {
     const numNodos = camino.length;
+    let stringRelacion = "";
     for (let i = 0; i < numNodos; i++) {
       const nodoOrigen = camino[i];
       const nodoDestino = camino[i + 1];
+      if (i === 0) {
+        stringRelacion += `${nodoOrigen.nombre} `;
+      }
       if (nodoDestino) {
         const nombreRelacion = buscarNombreRelacion(nodoOrigen, nodoDestino);
-        caminos.push(`${nodoOrigen.nombre} ${nombreRelacion} ${nodoDestino.nombre}`);
+        stringRelacion += `${nombreRelacion} ${nodoDestino.nombre} `;
       }
     }
+    caminos.push(stringRelacion);
   });
   return caminos;
 }
