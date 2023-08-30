@@ -14,8 +14,13 @@ export default function App() {
   const [resultados, setResultados] = useState([]);
 
   const agregarNodo = (nombreNodo) => {
-    const nodo = crearNodos(nombreNodo);
-    setGrafo([...grafo, nodo]);
+    const nodo = grafo.find((nodo) => nodo.nombre === nombreNodo);
+    if (nodo) {
+      console.warn("Ya existe un nodo con ese nombre");
+      return;
+    }
+
+    setGrafo([...grafo, crearNodos(nombreNodo)]);
   }
 
   const eliminarNodo = (idNodo) => {
