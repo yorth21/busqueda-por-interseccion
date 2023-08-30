@@ -10,6 +10,7 @@ class Nodo {
 
   agregarRelacion(nodoDestino, nombreRelacion) {
     if (this.hijos.some((hijo) => hijo.nodo.id === nodoDestino.id)) {
+      console.warn("Ya existe una relación entre estos nodos");
       return;
     }
     this.hijos.push({ nodo: nodoDestino, relacion: nombreRelacion, idRelacion: uuidv4() });

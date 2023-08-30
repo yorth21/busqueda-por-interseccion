@@ -20,7 +20,15 @@ export default function App() {
 
   const eliminarNodo = (idNodo) => {
     const newGrafo = grafo.filter((nodo) => nodo.id !== idNodo);
-    setGrafo(newGrafo);
+    const newGrafo2 = newGrafo.map((nodo) => {
+      const newHijos = nodo.hijos.filter((relacion) => relacion.nodo.id !== idNodo);
+      nodo.hijos = newHijos;
+      return nodo;
+    });
+    setGrafo(newGrafo2);
+
+    const newNodosABuscar = nodosABuscar.filter((nodo) => nodo.id !== idNodo);
+    setNodosABuscar(newNodosABuscar);
   }
 
   const agregarRelacion = (idNodoOrigen, idNodoDestino, nombreRelacion) => {

@@ -59,9 +59,16 @@ export default function Form({ agregarNodo, agregarRelacion, grafo }) {
               id="idNodoOrigen"
               className="bg-stone-950 px-3 py-2 font-semibold rounded-xl outline-none border-2 border-neutral-300/70 focus:border-neutral-300 w-full transition-colors">
               <option value="0">Selecciona un nodo</option>
-              {grafo.map((nodo) => (
-                <option key={nodo.id} value={nodo.id} >{nodo.nombre}</option>
-              ))}
+              {
+                grafo
+                  .slice()
+                  .sort((a, b) => a.nombre.localeCompare(b.nombre))
+                  .map((nodo) => (
+                    <option key={nodo.id} value={nodo.id}>
+                      {nodo.nombre}
+                    </option>
+                  ))
+              }
             </select>
 
             <input
@@ -79,9 +86,16 @@ export default function Form({ agregarNodo, agregarRelacion, grafo }) {
               id="idNodoDestino"
               className="bg-stone-950 px-3 py-2 font-semibold rounded-xl outline-none border-2 border-neutral-300/70 focus:border-neutral-300 w-full transition-colors">
               <option value="0">Selecciona un nodo</option>
-              {grafo.map((nodo) => (
-                <option key={nodo.id} value={nodo.id} >{nodo.nombre}</option>
-              ))}
+              {
+                grafo
+                  .slice()
+                  .sort((a, b) => a.nombre.localeCompare(b.nombre))
+                  .map((nodo) => (
+                    <option key={nodo.id} value={nodo.id}>
+                      {nodo.nombre}
+                    </option>
+                  ))
+              }
             </select>
           </div>
 

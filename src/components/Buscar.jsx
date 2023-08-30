@@ -32,9 +32,16 @@ export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handle
             id="idNodoABuscar"
             className="bg-stone-950 px-3 py-2 font-semibold rounded-xl outline-none border-2 border-neutral-300/70 focus:border-neutral-300 w-full transition-colors">
             <option value="0">Selecciona un nodo</option>
-            {newGrafo.map((nodo) => (
-              <option key={nodo.id} value={nodo.id} >{nodo.nombre}</option>
-            ))}
+            {
+              newGrafo
+                .slice()
+                .sort((a, b) => a.nombre.localeCompare(b.nombre))
+                .map((nodo) => (
+                  <option key={nodo.id} value={nodo.id}>
+                    {nodo.nombre}
+                  </option>
+                ))
+            }
           </select>
           <button className="bg-gray-800/80 hover:bg-gray-800/90 px-8 py-2 font-semibold rounded-xl border-2 border-neutral-300/70 hover:border-neutral-300/80 transition-colors">
             Agregar
