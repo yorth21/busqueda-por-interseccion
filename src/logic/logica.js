@@ -101,6 +101,11 @@ function validarCaminos(caminosEncontrados, padresABuscar, nodosABuscar) {
   return conjuntoDeInterseccion;
 }
 
+function buscarNombreRelacion(nodoOrigen, nodoDestino) {
+  const relacion = nodoOrigen.hijos.find((hijo) => hijo.nodo.id === nodoDestino.id);
+  return relacion.relacion;
+}
+
 /* ======================================================================= */
 
 export function crearNodos(nombre) {
@@ -123,4 +128,20 @@ export function buscarInterseccion(nodosABuscar) {
 
   const caminosEncontrados = buscarCaminos(padresABuscar);
   return validarCaminos(caminosEncontrados, padresABuscar, nodosABuscar);
+}
+
+export function imprimirCaminos(resultados) {
+  const caminos = [];
+  resultados.forEach((camino) => {
+    const numNodos = camino.length;
+    for (let i = 0; i < numNodos; i++) {
+      const nodoOrigen = camino[i];
+      const nodoDestino = camino[i + 1];
+      if (nodoDestino) {
+        const nombreRelacion = buscarNombreRelacion(nodoOrigen, nodoDestino);
+        caminos.push(`${nodoOrigen.nombre} ${nombreRelacion} ${nodoDestino.nombre}`);
+      }
+    }
+  });
+  return caminos;
 }

@@ -42,7 +42,7 @@ export default function Buscar({ grafo, agregarNodoABuscar, nodosABuscar, handle
         </div>
       </form>
 
-      <div className="flex flex-row flex-wrap gap-2 px-2 py-2 rounded-xl border-2 border-neutral-300/70">
+      <div className="flex flex-row flex-wrap gap-2 px-2 py-2 rounded-xl border-2 border-neutral-300/70 truncate">
         {nodosABuscar.length > 0 ? (
           nodosABuscar.map((nodo) => (
             <Nodo key={nodo.id} nodo={nodo} eliminarNodo={eliminarNodo} />
